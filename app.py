@@ -1,4 +1,8 @@
 
+# venv\Scripts\activate
+# Ve a share.streamlit.io e inicia sesión con tu cuenta de GitHub.
+# https://github.com/edilyrosa/proyecto_1_Py_automatizaciones/blob/main/app.py
+
 import streamlit as st
 from supabase import create_client, Client
 
@@ -8,13 +12,14 @@ st.set_page_config(
     page_icon=":rocket:", 
     layout="wide")
 
+
 if 'supabase' not in st.session_state:
     try:
         # Conexión a Supabase
         url = st.secrets["SUPABASE_URL"]
         key = st.secrets['SUPABASE_KEY']
         # creamos al cliente supabase
-        st.session_state.supabase = create_client(url, key)
+        st.session_state.supabase = create_client(url, key) #aqui la estamos creando
         st.success("Conexión a Supabase exitosa")
         supabase: Client  = st.session_state.supabase
         response = supabase.table('usuarios').select('*').execute()
